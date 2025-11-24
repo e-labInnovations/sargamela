@@ -26,7 +26,7 @@ export const FlashNewsSlide: React.FC<FlashNewsSlideProps> = ({ content }) => {
                 Flash News
             </h2>
             
-            <p className="text-5xl font-bold font-sans leading-tight text-black uppercase">
+            <p className="text-5xl font-bold font-malayalam leading-tight text-black">
                 {content}
             </p>
         </motion.div>

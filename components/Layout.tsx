@@ -1,11 +1,35 @@
-import React from 'react';
-import { TICKER_NEWS } from '../constants';
+import React, { useRef, useEffect } from "react";
+import { TICKER_NEWS } from "../constants";
 
 interface LayoutProps {
   children: React.ReactNode;
+  scrollNews?: string[];
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, scrollNews }) => {
+  // Keep track of the last valid scroll news to avoid showing empty ticker
+  const lastValidScrollNews = useRef<string[]>([]);
+
+  useEffect(() => {
+    // Update cache only when we have actual data
+    if (scrollNews !== undefined) {
+      if (scrollNews.length > 0) {
+        lastValidScrollNews.current = scrollNews;
+      } else {
+        // Clear cache if scroll news is explicitly empty
+        lastValidScrollNews.current = [];
+      }
+    }
+  }, [scrollNews]);
+
+  // Use scroll news if available, otherwise use last valid data or fallback
+  const displayNews =
+    scrollNews && scrollNews.length > 0
+      ? scrollNews
+      : lastValidScrollNews.current.length > 0
+      ? lastValidScrollNews.current
+      : TICKER_NEWS;
+
   return (
     <div className="h-screen w-screen bg-neutral-900 text-white flex flex-col overflow-hidden font-sans">
       {/* Top Decoration Bar */}
@@ -23,14 +47,20 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
         <div className="flex-grow overflow-hidden relative h-full flex items-center">
           <div className="animate-marquee whitespace-nowrap flex items-center">
-            {TICKER_NEWS.map((news, i) => (
-              <span key={i} className="mx-8 text-2xl font-bold uppercase tracking-tight">
+            {displayNews.map((news, i) => (
+              <span
+                key={i}
+                className="mx-8 text-2xl font-bold uppercase tracking-tight"
+              >
                 <span className="text-news-red mr-2">●</span> {news}
               </span>
             ))}
-             {/* Duplicate for seamless loop */}
-             {TICKER_NEWS.map((news, i) => (
-              <span key={`dup-${i}`} className="mx-8 text-2xl font-bold uppercase tracking-tight">
+            {/* Duplicate for seamless loop */}
+            {displayNews.map((news, i) => (
+              <span
+                key={`dup-${i}`}
+                className="mx-8 text-2xl font-bold uppercase tracking-tight"
+              >
                 <span className="text-news-red mr-2">●</span> {news}
               </span>
             ))}

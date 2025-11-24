@@ -5,57 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Farok News - Arts Fest 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Roboto+Condensed:wght@400;700&family=Anek+Malayalam:wght@100..800&family=Noto+Sans+Malayalam:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['"Roboto Condensed"', 'sans-serif'],
-              display: ['"Oswald"', 'sans-serif'],
+              sans: [
+                '"Roboto Condensed"',
+                '"Noto Sans Malayalam"',
+                "sans-serif",
+              ],
+              display: ['"Oswald"', '"Noto Sans Malayalam"', "sans-serif"],
+              malayalam: ['"Noto Sans Malayalam"', "sans-serif"],
+              "anek-malayalam": ['"Anek Malayalam"', "sans-serif"],
             },
             colors: {
-              'news-red': '#cc0000',
-              'news-dark': '#8b0000',
-              'news-black': '#1a1a1a',
-              'news-gold': '#ffcc00',
+              "news-red": "#cc0000",
+              "news-dark": "#8b0000",
+              "news-black": "#1a1a1a",
+              "news-gold": "#ffcc00",
             },
             animation: {
-              'marquee': 'marquee 120s linear infinite',
-              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              marquee: "marquee 120s linear 3s infinite",
+              "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
             },
             keyframes: {
               marquee: {
-                '0%': { transform: 'translateX(100%)' },
-                '100%': { transform: 'translateX(-100%)' },
-              }
-            }
+                "0%": { transform: "translateX(100%)" },
+                "5%": { transform: "translateX(0%)" },
+                "100%": { transform: "translateX(-100%)" },
+              },
+            },
           },
         },
-      }
+      };
     </script>
     <style>
       /* Hide scrollbar for cleaner display */
       body {
-        overflow: hidden; 
+        overflow: hidden;
         background-color: #000;
       }
+
+      /* Malayalam font styling */
+      .noto-sans-malayalam {
+        font-family: "Noto Sans Malayalam", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+
+      /* Anek Malayalam font styling */
+      .anek-malayalam {
+        font-family: "Anek Malayalam", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+
+      /* Better rendering for Malayalam text */
+      .malayalam-text {
+        font-family: "Noto Sans Malayalam", sans-serif;
+        font-feature-settings: "kern" 1, "liga" 1;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+          "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

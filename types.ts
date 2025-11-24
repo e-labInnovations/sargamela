@@ -17,10 +17,15 @@ export interface PivotTableData {
 }
 
 export enum ViewType {
-  INTRO = 'INTRO',
-  SCOREBOARD = 'SCOREBOARD',
-  TABLE = 'TABLE',
-  FLASH_NEWS = 'FLASH_NEWS'
+  INTRO = "INTRO",
+  SCOREBOARD = "SCOREBOARD",
+  TABLE = "TABLE",
+  FLASH_NEWS = "FLASH_NEWS",
+}
+
+export interface GeneralData {
+  flashNews: string;
+  scrollNews: string[];
 }
 
 export interface AppState {
