@@ -75,7 +75,7 @@ export const MobilePivotTable: React.FC<MobilePivotTableProps> = ({
                       key={valIdx}
                       className={`px-2 py-2 text-center font-mono border-r border-slate-200 ${
                         value === 10 || value === 5
-                          ? "text-green-600 font-bold text-base"
+                          ? "bg-green-600 text-white font-bold text-base"
                           : "text-slate-700 text-sm"
                       }`}
                     >

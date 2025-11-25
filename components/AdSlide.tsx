@@ -39,18 +39,6 @@ export const AdSlide: React.FC<AdSlideProps> = ({ imageUrl }) => {
             }}
           />
         </div>
-
-        {/* Sponsored Badge */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 text-center"
-        >
-          <div className="inline-block bg-news-gold text-news-black px-6 py-2 rounded-full font-display font-bold text-lg uppercase tracking-wider shadow-lg">
-            Sponsored
-          </div>
-        </motion.div>
       </motion.div>
     </div>
   );

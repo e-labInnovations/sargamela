@@ -124,7 +124,7 @@ export const PivotTableSlide: React.FC<PivotTableSlideProps> = ({
                       key={i}
                       className={`${colWidth} shrink-0 flex items-center justify-center text-xl font-mono border-r border-slate-200 ${
                         v === 10 || v === 5
-                          ? "text-green-600 font-bold"
+                          ? "bg-green-600 text-white font-bold"
                           : "text-slate-700"
                       }`}
                     >

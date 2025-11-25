@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Menu, X, Home, Trophy, Table, Radio, Tv } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Trophy,
+  Table,
+  Radio,
+  Tv,
+  FileText,
+  Download,
+} from "lucide-react";
 import { MobileScoreboard } from "../components/mobile/MobileScoreboard";
 import { MobilePivotTable } from "../components/mobile/MobilePivotTable";
 import { MobileNews } from "../components/mobile/MobileNews";
@@ -364,6 +374,65 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Programme Schedule Downloads */}
+              <div className="px-4 py-6">
+                <h3 className="text-xl font-display font-bold text-news-black mb-3 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-news-gold" />
+                  Programme Schedule
+                </h3>
+                <div className="space-y-3">
+                  {/* Stage Programme */}
+                  <a
+                    href="/files/KNM MADRASA SARGAMELA STAGE PROGRAMME.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="bg-gradient-to-r from-news-red to-news-dark text-white rounded-lg shadow-lg p-4 flex items-center justify-between hover:shadow-xl transition-all">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-white bg-opacity-20 p-3 rounded-lg">
+                          <FileText className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="font-display font-bold text-base">
+                            Stage Programme
+                          </div>
+                          <div className="text-xs opacity-80">
+                            View Competition Schedule
+                          </div>
+                        </div>
+                      </div>
+                      <Download className="w-5 h-5" />
+                    </div>
+                  </a>
+
+                  {/* Off Stage Programme */}
+                  <a
+                    href="/files/KNM MADRASA SARGAMELA  OFF STAGE PROGRAMME.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-lg shadow-lg p-4 flex items-center justify-between hover:shadow-xl transition-all">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-white bg-opacity-20 p-3 rounded-lg">
+                          <FileText className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="font-display font-bold text-base">
+                            Off Stage Programme
+                          </div>
+                          <div className="text-xs opacity-80">
+                            View Activities Schedule
+                          </div>
+                        </div>
+                      </div>
+                      <Download className="w-5 h-5" />
+                    </div>
+                  </a>
+                </div>
+              </div>
+
               {/* Quick Preview - Top 3 */}
               <div className="px-4">
                 <h3 className="text-xl font-display font-bold text-news-black mb-3 flex items-center gap-2">
@@ -424,13 +493,6 @@ const HomePage: React.FC = () => {
                   transition={{ delay: 0.6 }}
                   className="px-4 py-6"
                 >
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="bg-news-gold text-news-black px-3 py-1 text-xs font-display font-bold uppercase tracking-wider">
-                        Sponsored
-                      </div>
-                    </div>
-                  </div>
                   <div className="bg-white rounded-lg shadow-xl overflow-hidden border-4 border-news-gold">
                     <img
                       src={adImageUrl}

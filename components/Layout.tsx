@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useEffect } from "react";
 import { TICKER_NEWS } from "../constants";
 
 interface LayoutProps {
@@ -15,8 +14,6 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
   // Keep track of the last valid scroll news to avoid showing empty ticker
   const lastValidScrollNews = useRef<string[]>([]);
-  // Toggle between status and breaking news
-  const [showStatus, setShowStatus] = useState(true);
 
   useEffect(() => {
     // Update cache only when we have actual data
@@ -29,15 +26,6 @@ export const Layout: React.FC<LayoutProps> = ({
       }
     }
   }, [scrollNews]);
-
-  // Alternate between status and breaking news every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowStatus((prev) => !prev);
-    }, 5000); // Change every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Use scroll news if available, otherwise use last valid data or fallback
   const displayNews =
@@ -58,53 +46,10 @@ export const Layout: React.FC<LayoutProps> = ({
       </main>
 
       {/* Bottom Ticker */}
-      <div
-        className={`h-16 text-news-black flex items-center shadow-lg z-50 border-t-4 relative overflow-hidden ${
-          programStatus === "Live"
-            ? "bg-news-gold border-news-dark"
-            : programStatus === "Upcoming"
-            ? "bg-yellow-400 border-yellow-700"
-            : "bg-gray-300 border-gray-600"
-        }`}
-      >
-        <AnimatePresence mode="wait">
-          {showStatus ? (
-            <motion.div
-              key="status"
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className={`text-white font-display font-bold text-xl px-6 h-full flex items-center justify-center tracking-widest uppercase shrink-0 z-10 shadow-md ${
-                programStatus === "Live"
-                  ? "bg-news-red"
-                  : programStatus === "Upcoming"
-                  ? "bg-yellow-600"
-                  : "bg-gray-600"
-              }`}
-            >
-              {programStatus === "Live" && (
-                <>
-                  <span className="w-3 h-3 bg-white rounded-full mr-3 animate-pulse"></span>
-                  Live
-                </>
-              )}
-              {programStatus === "Upcoming" && "Upcoming"}
-              {programStatus === "Completed" && "Completed"}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="breaking"
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-news-red text-white font-display font-bold text-xl px-6 h-full flex items-center justify-center tracking-widest uppercase shrink-0 z-10 shadow-md"
-            >
-              Breaking News
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="h-16 bg-news-gold text-news-black flex items-center shadow-lg z-50 border-t-4 border-news-dark relative overflow-hidden">
+        <div className="bg-news-red text-white font-display font-bold text-xl px-6 h-full flex items-center justify-center tracking-widest uppercase shrink-0 z-10 shadow-md">
+          Breaking News
+        </div>
         <div className="flex-grow overflow-hidden relative h-full flex items-center">
           <div className="animate-marquee whitespace-nowrap flex items-center">
             {displayNews.map((news, i) => (
