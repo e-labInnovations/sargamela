@@ -189,6 +189,26 @@ class GSheetService {
     };
   }
 
+  /**
+   * Convert a Google Drive link to a direct image URL
+   * @param url - The Google Drive link
+   * @returns The direct image URL or the original URL if not a Google Drive link
+   */
+  driveToDirectImage(url: string): string {
+    // Check if it's a Google Drive link
+    if (!url.includes("drive.google.com")) {
+      return url;
+    }
+
+    const match = url.match(/\/d\/([^/]+)\//);
+    if (!match) {
+      return url;
+    }
+
+    const fileId = match[1];
+    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+  }
+
   // Formatted data methods
   async getKidsData(): Promise<PivotTableData> {
     const csvData = await this.getCSVData(this.csvUrls.kids);
@@ -240,6 +260,14 @@ class GSheetService {
     // Get Flash News and Scroll News
     const flashNews = dataMap.get("Flash News") || "";
     const scrollNewsText = dataMap.get("Scroll News") || "";
+    let programStatus = dataMap.get("Program Status") as
+      | "Live"
+      | "Upcoming"
+      | "Completed";
+    if (!["Live", "Upcoming", "Completed"].includes(programStatus)) {
+      programStatus = "Completed";
+    }
+    const adImageUrl = this.driveToDirectImage(dataMap.get("Ad Image") || "");
 
     // Split scroll news by newlines and filter empty lines
     const scrollNews = scrollNewsText
@@ -247,10 +275,16 @@ class GSheetService {
       .map((line) => line.trim())
       .filter((line) => line.length > 0);
 
-    return {
+    const generalData: GeneralData = {
       flashNews,
       scrollNews,
+      programStatus,
+      adImageUrl,
     };
+
+    console.log("General Data:", generalData);
+
+    return generalData;
   }
 }
 

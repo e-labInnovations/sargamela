@@ -51,12 +51,20 @@ export const ScoreboardSlide: React.FC<ScoreboardSlideProps> = ({
 
             const bgColor = isFirst
               ? "bg-gradient-to-br from-news-red to-news-dark text-white"
-              : isTop3
-              ? "bg-white border-l-8 border-news-gold"
+              : index === 1
+              ? "bg-gradient-to-br from-yellow-500 to-yellow-700 text-white"
+              : index === 2
+              ? "bg-gradient-to-br from-green-600 to-green-800 text-white"
               : "bg-white border-l-4 border-gray-300";
 
-            const textColor = isFirst ? "text-white" : "text-news-black";
-            const scoreColor = isFirst ? "text-news-gold" : "text-news-red";
+            const textColor = isTop3 ? "text-white" : "text-news-black";
+            const scoreColor = isFirst
+              ? "text-news-gold"
+              : index === 1
+              ? "text-yellow-100"
+              : index === 2
+              ? "text-green-100"
+              : "text-news-red";
 
             return (
               <motion.div
@@ -71,7 +79,7 @@ export const ScoreboardSlide: React.FC<ScoreboardSlideProps> = ({
                 {/* Rank Badge */}
                 <div
                   className={`absolute top-0 right-0 p-2 font-display font-bold text-4xl opacity-20 ${
-                    isFirst ? "text-white" : "text-black"
+                    isTop3 ? "text-white" : "text-black"
                   }`}
                 >
                   #{index + 1}
@@ -80,19 +88,19 @@ export const ScoreboardSlide: React.FC<ScoreboardSlideProps> = ({
                 {/* Icons for top ranks */}
                 {index === 0 && (
                   <Trophy
-                    className="absolute bottom-4 right-4 text-news-gold opacity-20"
+                    className="absolute bottom-4 right-4 text-news-gold opacity-30"
                     size={120}
                   />
                 )}
                 {index === 1 && (
                   <Medal
-                    className="absolute bottom-4 right-4 text-gray-400 opacity-20"
+                    className="absolute bottom-4 right-4 text-yellow-200 opacity-30"
                     size={80}
                   />
                 )}
                 {index === 2 && (
                   <Medal
-                    className="absolute bottom-4 right-4 text-amber-600 opacity-20"
+                    className="absolute bottom-4 right-4 text-green-200 opacity-30"
                     size={80}
                   />
                 )}
@@ -100,7 +108,7 @@ export const ScoreboardSlide: React.FC<ScoreboardSlideProps> = ({
                 <div className="z-10">
                   {isFirst && (
                     <div className="text-news-gold font-bold uppercase tracking-widest text-sm mb-2">
-                      Current Champion
+                      Now leading
                     </div>
                   )}
                   <h3

@@ -33,7 +33,7 @@ export const PivotTableSlide: React.FC<PivotTableSlideProps> = ({
       {/* Header */}
       <div className="flex items-center gap-4 mb-2 border-b-2 border-news-black pb-1 shrink-0">
         <div className="bg-news-black text-white text-xl font-display font-bold px-4 py-1 skew-x-[-10deg]">
-          <div className="skew-x-[10deg]">CATEGORY BREAKDOWN</div>
+          <div className="skew-x-[10deg]">CATEGORY</div>
         </div>
         <h2 className="text-3xl font-malayalam font-bold text-news-red uppercase truncate">
           {data.title}
@@ -46,9 +46,9 @@ export const PivotTableSlide: React.FC<PivotTableSlideProps> = ({
         <div className="flex border-b-2 border-news-dark bg-news-dark text-white shrink-0 z-20">
           {/* Fixed Top-Left Header */}
           <div
-            className={`${nameColWidth} shrink-0 p-2 font-display text-lg uppercase tracking-wider border-r border-red-800 flex items-end pb-2 bg-news-dark z-30 shadow-[4px_0_5px_rgba(0,0,0,0.2)]`}
+            className={`${nameColWidth} shrink-0 p-2 font-display font-bold font-malayalam text-2xl uppercase tracking-wider border-r border-red-800 flex items-end pb-2 bg-news-dark z-30 shadow-[4px_0_5px_rgba(0,0,0,0.2)]`}
           >
-            Madrasa
+            മദ്രസ
           </div>
 
           {/* Scrolling Headers */}
@@ -122,7 +122,11 @@ export const PivotTableSlide: React.FC<PivotTableSlideProps> = ({
                   {row.values.map((v, i) => (
                     <div
                       key={i}
-                      className={`${colWidth} shrink-0 flex items-center justify-center text-xl font-mono text-slate-700 border-r border-slate-200`}
+                      className={`${colWidth} shrink-0 flex items-center justify-center text-xl font-mono border-r border-slate-200 ${
+                        v === 10 || v === 5
+                          ? "text-green-600 font-bold"
+                          : "text-slate-700"
+                      }`}
                     >
                       {v > 0 ? (
                         v

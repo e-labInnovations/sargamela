@@ -1,0 +1,26 @@
+{
+  "name": "സർഗ്ഗമേള 2025 - Madrasa Arts Festival",
+  "short_name": "സർഗ്ഗമേള 2025",
+  "description": "Live scoreboard and results for Madrasa Arts Festival 2025",
+  "start_url": "https://sargamela.elabins.com/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#cc0000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "education", "entertainment"],
+  "lang": "ml"
+}

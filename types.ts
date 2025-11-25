@@ -26,6 +26,8 @@ export enum ViewType {
 export interface GeneralData {
   flashNews: string;
   scrollNews: string[];
+  programStatus: "Live" | "Upcoming" | "Completed";
+  adImageUrl: string;
 }
 
 export interface AppState {
