@@ -331,9 +331,6 @@ const HomePage: React.FC = () => {
                     <div className="text-news-gold">2025</div>
                   </div>
                   <div className="h-1 w-24 bg-news-gold mx-auto mt-4 mb-6"></div>
-                  <p className="text-white text-opacity-80 font-malayalam text-lg">
-                    മദ്രസ കലോത്സവം - 2025
-                  </p>
                 </motion.div>
               </div>
 
